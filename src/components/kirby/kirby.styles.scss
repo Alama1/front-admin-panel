@@ -1,0 +1,28 @@
+.kirby {
+    z-index: 5;
+    .kirby-outer-container {
+        width: 100%;
+        height: 100px;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        .kirby-walk {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            position: fixed;
+            bottom: 0;
+            height: 100px;
+            width: 100%;
+            .kirby {
+                z-index: 3;
+                position: relative;
+                left: -43px;
+            }
+            .rainbow {
+                margin-top: 40px;
+                z-index: 2;
+            }
+        }
+    }
+}

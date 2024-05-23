@@ -1,0 +1,53 @@
+.header {
+    height: 108px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    -webkit-box-shadow: 0px 3px 22px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 22px -6px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 22px -6px rgba(0,0,0,0.75);
+    .header--wave {
+        position: absolute;
+        width: 100%;
+        margin-top: -10px;
+        object-fit: fill;
+    }
+    .logo {
+        padding-left: 64px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        .logo--img{
+            height: 30px;
+        }
+        .logo--text{
+            font-weight: 600;
+            font-size: 24px;
+            color: #FFF
+        }
+    }
+    .nav {
+        padding-right: 64px;
+        display: flex;
+        flex-direction: row;
+        color: #fff;
+        gap: 60px;
+        padding-right: 300px;
+        font-weight: 600;
+        font-size: 19px;
+        .gustavo {
+            cursor: pointer;
+        }
+        .birthday {
+            cursor: pointer;
+        }
+        .console {
+            cursor: pointer;
+        }
+    }
+}

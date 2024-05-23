@@ -1,0 +1,124 @@
+.home {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .home-blur {
+        width: 70%;
+        height: 1000px;
+        background-color: rgba($color: #000000, $alpha: 0.15);
+        text-align: left;
+        .home-page--title {
+            font-size: 50px;
+            font-weight: 600;
+            padding-left: 80px;
+            color: #fff;
+        }
+        .auth-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            padding-left: 80px;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            vertical-align: middle;
+            padding-top: 30px;
+            .login-button {
+                width: 235px;
+                height: 70px;
+                background-color: #44DAE7;
+                border-radius: 8px;
+                cursor: pointer;
+                z-index: 3;
+            }
+            .signUp-button {
+                cursor: pointer;
+                width: 120px;
+                height: 70px;
+                background-color: #34F7D5;
+                border-radius: 8px;
+                z-index: 3;
+            }
+        }
+        .meme {
+            width: 500px;
+            height: 445px;
+            position: absolute;
+            left: 1220px;
+            top: 300px;
+            border-radius: 30px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 5;
+        }
+        .cat-first {
+            padding-top: 193px;
+        }
+        .cat-second {
+            scale: 150%
+        }
+    }
+    .decorative-line {
+        position: absolute;
+        left: 56px;
+        top: 140px;
+        rotate: 25deg;
+    }
+
+    .hamsters-facts--blur {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background: linear-gradient(123.35deg, rgba(235, 243, 208, 0.05) 0%, rgba(235, 243, 208, 0) 18.4%), radial-gradient(29.9% 70.94% at 44.25% 86.96%, rgba(220, 141, 220, 0.05) 0%, rgba(220, 141, 220, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(33.83% 53.57% at 35.87% 100%, rgba(220, 141, 220, 0.05) 0%, rgba(220, 141, 220, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(42.66% 49.72% at 45.56% 44.65%, rgba(203, 173, 235, 0.05) 0%, rgba(194, 166, 241, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, linear-gradient(134.59deg, rgba(205, 249, 232, 0.05) 20.63%, rgba(205, 249, 232, 0) 47.84%), linear-gradient(216.44deg, rgba(192, 169, 240, 0) -16.52%, rgba(192, 169, 240, 0.0173201) -11.15%, rgba(192, 169, 240, 0.05) -1.04%, rgba(192, 169, 240, 0) 16.99%), linear-gradient(128.53deg, rgba(192, 169, 240, 0) 28.63%, rgba(192, 169, 240, 0.05) 38.5%, rgba(192, 169, 240, 0) 50.26%), radial-gradient(40.75% 97.37% at 90.75% 40.15%, rgba(255, 253, 177, 0.05) 0%, rgba(254, 228, 191, 0.05) 34.46%, rgba(240, 189, 208, 0.05) 69.5%, rgba(255, 129, 38, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, rgba(194, 166, 241, 0.05);
+        backdrop-filter: blur(15px);
+        height: 1000px;
+        z-index: -1;
+        .hamsters-facts--page {
+            width: 70%;
+            text-align: left;
+            .hamsters-facts--title {
+                padding-left: 200px;
+                padding-top: 70px;
+                font-size: 48px;
+                font-weight: 600;
+                color: #131313
+            }
+        }
+    }
+    .blurred-things {
+        position: absolute;
+        z-index: -2;
+        @keyframes levitate {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-20px);
+            }
+        }
+        .cylinder--1 {
+            position: absolute;
+            left: -500px;
+            top: 140px;
+            rotate: -35deg;
+            animation: levitate 4s ease-in-out infinite;
+        }
+        .cylinder--2 {
+            position: absolute;
+            left: 210px;
+            top: 450px;
+            rotate: 25deg;
+            animation: levitate 7s ease-in-out infinite;
+        }
+        .triangle--1 {
+            position: absolute;
+            left: -380px;
+            top: 530px;
+            rotate: -87deg;
+            scale: 60%;
+            animation: levitate 5s ease-in-out infinite;
+        }
+    }
+}
