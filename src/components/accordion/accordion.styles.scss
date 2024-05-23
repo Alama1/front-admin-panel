@@ -1,0 +1,15 @@
+.title {
+    display: flex;
+    gap: 50px;
+    .index--number {
+        color: #44DAE7;
+        font-size: 28px;
+        font-weight: 700;
+    }
+}
+.content {
+    padding-left: 50px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: large;
+    font-weight: 500;
+}

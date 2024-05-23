@@ -71,25 +71,35 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        background: linear-gradient(123.35deg, rgba(235, 243, 208, 0.05) 0%, rgba(235, 243, 208, 0) 18.4%), radial-gradient(29.9% 70.94% at 44.25% 86.96%, rgba(220, 141, 220, 0.05) 0%, rgba(220, 141, 220, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(33.83% 53.57% at 35.87% 100%, rgba(220, 141, 220, 0.05) 0%, rgba(220, 141, 220, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, radial-gradient(42.66% 49.72% at 45.56% 44.65%, rgba(203, 173, 235, 0.05) 0%, rgba(194, 166, 241, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, linear-gradient(134.59deg, rgba(205, 249, 232, 0.05) 20.63%, rgba(205, 249, 232, 0) 47.84%), linear-gradient(216.44deg, rgba(192, 169, 240, 0) -16.52%, rgba(192, 169, 240, 0.0173201) -11.15%, rgba(192, 169, 240, 0.05) -1.04%, rgba(192, 169, 240, 0) 16.99%), linear-gradient(128.53deg, rgba(192, 169, 240, 0) 28.63%, rgba(192, 169, 240, 0.05) 38.5%, rgba(192, 169, 240, 0) 50.26%), radial-gradient(40.75% 97.37% at 90.75% 40.15%, rgba(255, 253, 177, 0.05) 0%, rgba(254, 228, 191, 0.05) 34.46%, rgba(240, 189, 208, 0.05) 69.5%, rgba(255, 129, 38, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */, rgba(194, 166, 241, 0.05);
-        backdrop-filter: blur(15px);
-        height: 1000px;
-        z-index: -1;
+        background: linear-gradient(216.44deg, rgba(192, 169, 240, 0.1) -11.15%, rgba(192, 169, 240, 0.1) -1.04%);
+        min-height: 700px;
         .hamsters-facts--page {
             width: 70%;
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
             .hamsters-facts--title {
-                padding-left: 200px;
                 padding-top: 70px;
                 font-size: 48px;
                 font-weight: 600;
-                color: #131313
+                color: #131313;
+            }
+            .hamsters-facts--accordions {
+                width: 70%;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                padding-top: 50px;
+                padding-bottom: 50px;
             }
         }
     }
     .blurred-things {
         position: absolute;
         z-index: -2;
+        filter: blur(15px);
         @keyframes levitate {
             0%, 100% {
               transform: translateY(0);
