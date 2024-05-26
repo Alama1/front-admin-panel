@@ -51,10 +51,10 @@ const Home = () => {
         const password = data.get('password');
         const username = data.get('username');
         try {
-            const loginRes = await fetch('http://localhost:3001/signup', { 
+            const loginRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/signup`, { 
                 method: 'POST', 
                 headers: {
-                    'Access-Control-Allow-Origin': 'http://localhost',
+                    'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ email, password, username }) 
@@ -89,10 +89,10 @@ const Home = () => {
         const password = data.get('password');
     
         try {
-            const loginRes = await fetch('http://localhost:3001/login', { 
+            const loginRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/login`, { 
                 method: 'POST', 
                 headers: {
-                    'Access-Control-Allow-Origin': 'http://localhost',
+                    'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ email, password }) 
@@ -141,10 +141,10 @@ const Home = () => {
       };
 
     async function updateToken(token) {
-        const updateRes = await fetch('http://localhost:3001/updateToken', { 
+        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/updateToken`, { 
             method: 'GET', 
             headers: {
-                'Access-Control-Allow-Origin': 'http://localhost',
+                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${token}`
 
@@ -170,19 +170,28 @@ const Home = () => {
         }
     }
 
-    useEffect(() => {
-        setHamstersFacts([
-            {title: 'Title 1', fact: 'Fact 1'},
-            {title: 'Title 2', fact: 'Fact 2'},
-            {title: 'Title 3', fact: 'Fact 3'},
-            {title: 'Title 4', fact: 'Fact 4'},
-            {title: 'Title 5', fact: 'Fact 5'},
-            //TODO API
-        ])
-    }, [])
+    async function updateHamsterFacts() {
+        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/hamster`, { 
+            method: 'GET', 
+            headers: {
+                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+
+            }
+        });
+        const response = await updateRes.json()
+        setHamstersFacts(response.message.map((fact) => {
+            return {
+                title: fact.title,
+                fact: fact.description
+            }
+        }))
+    }
 
     useEffect(() => {
         const token = localStorage.getItem('token')
+        updateHamsterFacts()
         if (token) {
             updateToken(token)
         }

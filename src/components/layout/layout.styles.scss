@@ -1,10 +1,14 @@
 .header {
-    height: 108px;
+    position: sticky;
+    z-index: 10;
+    top: 0px;
+    height: 70px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    background-color: rgba($color: #000000, $alpha: 0.4);
     -webkit-box-shadow: 0px 3px 22px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 3px 22px -6px rgba(0,0,0,0.75);
     box-shadow: 0px 3px 22px -6px rgba(0,0,0,0.75);
@@ -14,14 +18,14 @@
         margin-top: -10px;
         object-fit: fill;
     }
-    .logo {
-        padding-left: 64px;
+    .nav-logo {
+        margin-left: 64px;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         gap: 10px;
-
+        cursor: pointer;
         .logo--img{
             height: 30px;
         }
@@ -40,13 +44,13 @@
         padding-right: 300px;
         font-weight: 600;
         font-size: 19px;
-        .gustavo {
+        .gustavo-nav--button {
             cursor: pointer;
         }
-        .birthday {
+        .birthday-nav--button {
             cursor: pointer;
         }
-        .console {
+        .console-nav--button {
             cursor: pointer;
         }
     }
