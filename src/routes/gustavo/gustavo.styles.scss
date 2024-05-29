@@ -1,4 +1,14 @@
 .gustavo {
-    font-size: 50px;
-    min-height: 1080px;
+    display: flex;
+    justify-content: center;
+    .gustavo--body {
+        width: 70%;
+        .settings {
+            display: flex;
+            flex-direction: column;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            gap: 15px;
+        }
+    }
 }
