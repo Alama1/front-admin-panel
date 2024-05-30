@@ -10,7 +10,7 @@ import './settingsAccordion.styles.scss'
 const AccordionComponent = ({title, content}) => {
     return (
         <Accordion className='settings-accordion--body'
-            sx={{backgroundColor: 'rgba(255, 255, 255, 0.2)', borderRadius: '8px'}}
+            sx={{backgroundColor: 'rgba(0, 0, 0, 0.4)', borderRadius: '8px'}}
         >
             <AccordionSummary 
                 expandIcon={<ArrowDropDownIcon />}
@@ -24,7 +24,10 @@ const AccordionComponent = ({title, content}) => {
                             display: 'flex', 
                             alignItems: 'center', 
                             justifyContent: 'center',
-                            fontWeight: '500'
+                            fontWeight: '500',
+                            fontSize: '24px',
+                            color: 'rgba(255, 255, 255, 0.5)',
+                            paddingLeft: '2vw'
                         }}>
                         {title}
                     </Typography>

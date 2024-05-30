@@ -6,9 +6,75 @@
         .settings {
             display: flex;
             flex-direction: column;
-            padding-top: 30px;
-            padding-bottom: 30px;
-            gap: 15px;
+            padding-top: 3em;
+            padding-bottom: 3em;
+            gap: 1em;
         }
     }
+}
+.reaction-gifs {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    .reaction-gifs--global {
+        .global-gif--header {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 2vh;
+        }
+        .global-gifs--elements{
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            row-gap: 2ch;
+            column-gap: 2ch;
+            max-width: 100%;
+            .global-reaction-gif {
+                max-width: 100%;
+                min-height: 0vh;
+                max-height: 50vh;
+                overflow: hidden;
+            }
+        }
+        
+    }
+    .reaction-gifs--personal {
+        .personal-gif--header {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 2vh;
+        }
+        .personal-gifs--elements {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5vw;
+            .personal-gips-container {
+                .personal-gif-element {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5vw;
+                    .personal-gif--username {
+                        text-align: center;
+                    }
+                    .personal-gif--gifs {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr 1fr;
+                        row-gap: 2ch;
+                        column-gap: 2ch;
+                        max-width: 100%;
+                        .personal-gif--gif {
+                            max-width: 100%;
+                            min-height: 0vh;
+                            max-height: 50vh;
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
+            
+        }
+
+    }
+}
+.add-reaction-gif-button {
+    padding-top: 3em;
 }
