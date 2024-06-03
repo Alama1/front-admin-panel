@@ -5,24 +5,77 @@ import { useState, useEffect } from 'react'
 
 const Gustavo = () => {
     const [globalGifs, setGlobalGifs] = useState([])
-    const [personalGifs, setPersonalGifs] = useState([])
+    const [personalGifs, setPersonalGifs] = useState({})
     const [users, setUsers] = useState([])
+    const [globalReactionChance, setGlobalReactionChance] = useState(0)
+    const [personalReactionChance, setPersonalReactionChance] = useState(0)
+    const [globalGreenLightUp, setGlobalGreenLightUp] = useState(false)
 
     useEffect(() => {
-        setGlobalGifs([
-            'https://cdn.discordapp.com/attachments/201232821103099904/1235913314954121267/5337076127519228446.gif?ex=6659b1f8&is=66586078&hm=ff2d4d765ea6cd2e5727c530e943b67393fe644bfb11db866e66471205f72b61&', 
-            'https://cdn.discordapp.com/attachments/398082454532915201/1242443534615711764/Clipchamp.gif?ex=6659b8b6&is=66586736&hm=134549fc6dd472eb52de1ab58cc0be7f45b2d7752ba8176b99a95b4ab1a609b2&',
-            'https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif',
-            'https://cdn.discordapp.com/attachments/398082454532915201/1242443534615711764/Clipchamp.gif?ex=6659b8b6&is=66586736&hm=134549fc6dd472eb52de1ab58cc0be7f45b2d7752ba8176b99a95b4ab1a609b2&',
-            'https://cdn.discordapp.com/attachments/201232821103099904/1235913314954121267/5337076127519228446.gif?ex=6659b1f8&is=66586078&hm=ff2d4d765ea6cd2e5727c530e943b67393fe644bfb11db866e66471205f72b61&'
-        ])
-
-        setPersonalGifs({
-            "Oleg<>321451212215": ['https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif', 'https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif', 'https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif'],
-            "Natasha<>12451204321": ['https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif', 'https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif', 'https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif'],
-            "Anton<>12467182621": ['https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif', 'https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif', 'https://media1.tenor.com/m/e725ChiJpTMAAAAd/nerd-cube.gif']
-        })
+        getServerGifs()
+        getReactionChances()
     }, [])
+
+    const getServerGifs = async () => {
+        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/gustavoGifs`, { 
+            method: 'GET', 
+            headers: {
+                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+
+            }
+        });
+        const response = await updateRes.json()
+        setGlobalGifs(response.message.global)
+        setPersonalGifs(response.message.personal)
+    }
+
+    const getReactionChances = async () => {
+        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/reactionChances`, { 
+            method: 'GET', 
+            headers: {
+                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+
+            }
+        });
+
+        const response = await updateRes.json()
+        setGlobalReactionChance(response.message.gifChance)
+        setPersonalReactionChance(response.message.personalGifChance)
+    }
+
+    const onReactionChanceChange = async (e) => {
+        let reactionChance = parseFloat(e.target.value)
+        if (!reactionChance) return
+        reactionChance = reactionChance > 100 ? 100 : reactionChance
+        const reactionType = e.target.id
+
+        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/reactionChance`, { 
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({ type: reactionType, gifChance: reactionChance })
+        });
+        
+        const response = await updateRes.json()
+
+        if (response.success) {
+            setGlobalGreenLightUp(true)
+            console.log('Setting green')
+            setTimeout(() => {
+                setGlobalGreenLightUp(false)
+                console.log('Unsetting green')
+            }, 1000);
+        } else {
+            alert('No')
+        }
+    }
 
     const reactionGifs = 
         <div className='reaction-gifs'>
@@ -31,8 +84,15 @@ const Gustavo = () => {
                     <div>
                         Global gifs
                     </div>
-                    <div>
+                    <div className='reaction-chance'>
                         Chance:
+                        <input id='global' className='reaction-chance--chance' onBlur={onReactionChanceChange} placeholder={globalReactionChance}
+                            style={{
+                                background: globalGreenLightUp ? 'green' : 'transparent',
+                                transition: 'background-color 0.3s ease'
+                            }}
+                        />
+                        %
                     </div>
                 </div>
                 <div className='global-gifs--elements'>

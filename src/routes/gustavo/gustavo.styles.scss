@@ -21,6 +21,19 @@
             display: flex;
             flex-direction: column;
             padding-bottom: 2vh;
+            .reaction-chance {
+                display: flex;
+                justify-content: center;
+                .reaction-chance--chance {
+                    margin-left: 1em;
+                    border-radius: 3px;
+                    width: 3rem;
+                    color: #fff;
+                    text-align: center;
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+            }
         }
         .global-gifs--elements{
             display:grid;
