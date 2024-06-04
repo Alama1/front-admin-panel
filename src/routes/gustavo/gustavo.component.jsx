@@ -67,13 +67,12 @@ const Gustavo = () => {
 
         if (response.success) {
             setGlobalGreenLightUp(true)
-            console.log('Setting green')
             setTimeout(() => {
                 setGlobalGreenLightUp(false)
                 console.log('Unsetting green')
             }, 1000);
         } else {
-            alert('No')
+            alert(response.message)
         }
     }
 
