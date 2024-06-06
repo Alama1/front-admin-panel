@@ -17,10 +17,10 @@ const Gustavo = () => {
     }, [])
 
     const getServerGifs = async () => {
-        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/gustavoGifs`, { 
+        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/gustavoGifs`, { 
             method: 'GET', 
             headers: {
-                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`
 
@@ -32,10 +32,10 @@ const Gustavo = () => {
     }
 
     const getReactionChances = async () => {
-        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/reactionChances`, { 
+        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/reactionChances`, { 
             method: 'GET', 
             headers: {
-                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`
 
@@ -53,10 +53,10 @@ const Gustavo = () => {
         reactionChance = reactionChance > 100 ? 100 : reactionChance
         const reactionType = e.target.id
 
-        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/reactionChance`, { 
+        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/reactionChance`, { 
             method: 'POST',
             headers: {
-                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`,
             },

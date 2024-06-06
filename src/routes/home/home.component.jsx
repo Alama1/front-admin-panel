@@ -51,10 +51,10 @@ const Home = () => {
         const password = data.get('password');
         const username = data.get('username');
         try {
-            const loginRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/signup`, { 
+            const loginRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/signup`, { 
                 method: 'POST', 
                 headers: {
-                    'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                    'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ email, password, username }) 
@@ -89,10 +89,10 @@ const Home = () => {
         const password = data.get('password');
     
         try {
-            const loginRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/login`, { 
+            const loginRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/login`, { 
                 method: 'POST', 
                 headers: {
-                    'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                    'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ email, password }) 
@@ -141,10 +141,10 @@ const Home = () => {
       };
 
     async function updateToken(token) {
-        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/updateToken`, { 
+        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/updateToken`, { 
             method: 'GET', 
             headers: {
-                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${token}`
 
@@ -171,10 +171,10 @@ const Home = () => {
     }
 
     async function updateHamsterFacts() {
-        const updateRes = await fetch(`http://${process.env.REACT_APP_BACKEND_IP}/hamster`, { 
+        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/hamster`, { 
             method: 'GET', 
             headers: {
-                'Access-Control-Allow-Origin': `http://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`
 
