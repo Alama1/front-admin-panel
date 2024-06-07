@@ -17,9 +17,11 @@ const Gustavo = () => {
     const [globalReactionChance, setGlobalReactionChance] = useState(0)
     const [personalReactionChance, setPersonalReactionChance] = useState(0)
     const [globalGreenLightUp, setGlobalGreenLightUp] = useState(false)
+    const [personalGreenLightUp, setPersonalGreenLightUp] = useState(false)
     const [isAddGifModalOpen, setIsAddGifModalOpen] = useState(false)
     const [autocompleteUser, setAutocompleteUser] = useState({})
     const [previewURL, setPreviewURL] = useState('')
+    const [hiddenImages, setHiddenImages] = useState([])
 
     useEffect(() => {
         getServerGifs()
@@ -48,10 +50,10 @@ const Gustavo = () => {
       };
 
     const getUsers = async () => {
-        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/users`, { 
+        const updateRes = await fetch(`${process.env.REACT_APP_BACKEND_IP}/users`, { 
             method: 'GET', 
             headers: {
-                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`
 
@@ -73,10 +75,10 @@ const Gustavo = () => {
     }
 
     const getServerGifs = async () => {
-        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/gustavoGifs`, { 
+        const updateRes = await fetch(`${process.env.REACT_APP_BACKEND_IP}/gustavoGifs`, { 
             method: 'GET', 
             headers: {
-                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`
 
@@ -94,10 +96,10 @@ const Gustavo = () => {
     }
 
     const getReactionChances = async () => {
-        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/reactionChances`, { 
+        const updateRes = await fetch(`${process.env.REACT_APP_BACKEND_IP}/reactionChances`, { 
             method: 'GET', 
             headers: {
-                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`
 
@@ -115,10 +117,10 @@ const Gustavo = () => {
         reactionChance = reactionChance > 100 ? 100 : reactionChance
         const reactionType = e.target.id
 
-        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/reactionChance`, { 
+        const updateRes = await fetch(`${process.env.REACT_APP_BACKEND_IP}/reactionChance`, { 
             method: 'POST',
             headers: {
-                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`,
             },
@@ -128,10 +130,14 @@ const Gustavo = () => {
         const response = await updateRes.json()
 
         if (response.success) {
-            setGlobalGreenLightUp(true)
+            if (reactionType === 'global') {
+                setGlobalGreenLightUp(true)
+            } else {
+                setPersonalGreenLightUp(true)
+            }
             setTimeout(() => {
                 setGlobalGreenLightUp(false)
-                console.log('Unsetting green')
+                setPersonalGreenLightUp(false)
             }, 1000);
         } else {
             alert(response.message)
@@ -143,10 +149,10 @@ const Gustavo = () => {
     }
 
     const handleAddGif = async () => {
-        const updateRes = await fetch(`https://${process.env.REACT_APP_BACKEND_IP}/addReactionGif`, { 
+        const updateRes = await fetch(`${process.env.REACT_APP_BACKEND_IP}/addReactionGif`, { 
             method: 'POST',
             headers: {
-                'Access-Control-Allow-Origin': `https://${process.env.REACT_APP_BACKEND_IP}`,
+                'Access-Control-Allow-Origin': `${process.env.REACT_APP_BACKEND_IP}`,
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${localStorage.getItem('token')}`,
             },
@@ -158,6 +164,7 @@ const Gustavo = () => {
         if (response.success) {
             alert(JSON.stringify(response.message))
             closeAddGifModal()
+            setPreviewURL('')
         } else {
             alert(JSON.stringify(response.message))
         }
@@ -174,6 +181,35 @@ const Gustavo = () => {
         setPreviewURL(url)
         console.log(url)
         console.log(autocompleteUser.id)
+    }
+
+    const deleteGif = async (event) => {
+        const imgType = event.target.className
+        const gifToDelete = event.target.src
+        let user = ''
+        if (imgType === 'global-reaction--gif') {
+            user = 'everyone'
+        } else {
+            user = event.target.id
+        }
+
+        const confirmation = window.confirm('Are you sure that you want to delete this gif?')
+        if (!confirmation) return
+
+        setHiddenImages([...hiddenImages, gifToDelete]);
+
+        const updateRes = await fetch(`${process.env.REACT_APP_BACKEND_IP}/deleteGif`, { 
+            method: 'PATCH',
+            headers: {
+                'Access-Control-Allow-Origin': `${process.env.REACT_APP_BACKEND_IP}`,
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({gifToDelete, user })
+        });
+        
+        const response = await updateRes.json()
+        console.log(response)
     }
 
     const reactionGifs = 
@@ -195,9 +231,18 @@ const Gustavo = () => {
                     </div>
                 </div>
                 <div className='global-gifs--elements'>
-                    {globalGifs.map((element) => {
+                    {globalGifs.map((element, index) => {
                         return <div>
-                            <img alt='reaction gif' className='global-reaction-gif' src={element}/>
+                            <img 
+                            key={`global gif ${index}`} 
+                            onClick={deleteGif} 
+                            alt='reaction gif' 
+                            className='global-reaction--gif' 
+                            src={element}
+                            style={{
+                                display: hiddenImages.includes(element) ? 'none' : 'block',
+                              }}
+                            />
                         </div>
                     })}
                 </div>
@@ -211,25 +256,42 @@ const Gustavo = () => {
                     <div>
                         Personal gifs
                     </div>
-                    <div>
+                    <div className='reaction-chance'>
                         Chance:
+                        <input id='personal' className='reaction-chance--chance' onBlur={onReactionChanceChange} placeholder={personalReactionChance}
+                            style={{
+                                background: personalGreenLightUp ? 'green' : 'transparent',
+                                transition: 'background-color 0.3s ease'
+                            }}
+                        />
+                        %
                     </div>
                 </div>
                 <div className='personal-gifs--elements'>
                     {
-                        Object.entries(personalGifs).map(([key, value]) => {
-                            return <div className='personal-gips-container'>
-                                <div className='personal-gif-element'>
-                                    <div className='personal-gif--username'>
-                                        {key.split('<>')[0]}
+                        Object.entries(personalGifs).map(([key, value], index) => {
+                            return <div key={`personal gif element ${index}`} className='personal-gips-container'>
+                                        <div className='personal-gif-element'>
+                                            <div className='personal-gif--username'>
+                                                {key.split('<>')[0]}
+                                            </div>
+                                            <div className='personal-gif--gifs'>
+                                                {value.map((element, index) => {
+                                                    return <img 
+                                                    onClick={deleteGif} 
+                                                    id={key.split('<>')[1]} 
+                                                    key={`global gif ${index}`} 
+                                                    alt='personal gif' 
+                                                    className='personal-reaction--gif' 
+                                                    src={element}
+                                                    style={{
+                                                        display: hiddenImages.includes(element) ? 'none' : 'block',
+                                                      }}
+                                                    />
+                                                })}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className='personal-gif--gifs'>
-                                        {value.map((element) => {
-                                            return <img alt='personal gif' className='personal-gif--gif' src={element}/>
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
                         })
                     }
                 </div>

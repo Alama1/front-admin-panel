@@ -1,4 +1,5 @@
 .gustavo {
+    min-height: 1080px;
     display: flex;
     justify-content: center;
     .gustavo--body {
@@ -44,20 +45,37 @@
             row-gap: 2ch;
             column-gap: 2ch;
             max-width: 100%;
-            .global-reaction-gif {
+            .global-reaction--gif {
                 max-width: 100%;
                 min-height: 0vh;
                 max-height: 50vh;
                 overflow: hidden;
+                cursor: pointer;
             }
         }
         
     }
     .reaction-gifs--personal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         .personal-gif--header {
             display: flex;
             flex-direction: column;
             padding-bottom: 2vh;
+            .reaction-chance {
+                display: flex;
+                justify-content: center;
+                .reaction-chance--chance {
+                    margin-left: 1em;
+                    border-radius: 3px;
+                    width: 3rem;
+                    color: #fff;
+                    text-align: center;
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+            }
         }
         .personal-gifs--elements {
             display: flex;
@@ -77,11 +95,12 @@
                         row-gap: 2ch;
                         column-gap: 2ch;
                         max-width: 100%;
-                        .personal-gif--gif {
+                        .personal-reaction--gif {
                             max-width: 100%;
                             min-height: 0vh;
                             max-height: 50vh;
                             overflow: hidden;
+                            cursor: pointer;
                         }
                     }
                 }
