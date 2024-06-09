@@ -3,17 +3,20 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
     .home-blur {
         width: 70%;
         height: 1000px;
-        background-color: rgba($color: #000000, $alpha: 0.15);
+        background-color: rgba(#000000, 0.15);
         text-align: left;
+
         .home-page--title {
             font-size: 50px;
             font-weight: 600;
             padding-left: 80px;
             color: #fff;
         }
+
         .auth-buttons {
             display: flex;
             flex-direction: row;
@@ -24,6 +27,7 @@
             text-align: center;
             vertical-align: middle;
             padding-top: 30px;
+
             .login-button {
                 width: 235px;
                 height: 70px;
@@ -32,6 +36,7 @@
                 cursor: pointer;
                 z-index: 3;
             }
+
             .signUp-button {
                 cursor: pointer;
                 width: 120px;
@@ -41,6 +46,7 @@
                 z-index: 3;
             }
         }
+
         .meme {
             width: 500px;
             height: 445px;
@@ -52,13 +58,16 @@
             background-repeat: no-repeat;
             z-index: 5;
         }
+
         .cat-first {
             padding-top: 193px;
         }
+
         .cat-second {
-            scale: 150%
+            scale: 150%;
         }
     }
+
     .decorative-line {
         position: absolute;
         left: 56px;
@@ -74,6 +83,7 @@
         width: 100%;
         background: linear-gradient(216.44deg, rgba(192, 169, 240, 0.1) -11.15%, rgba(192, 169, 240, 0.1) -1.04%);
         min-height: 700px;
+
         .hamsters-facts--page {
             width: 70%;
             text-align: left;
@@ -87,6 +97,7 @@
                 font-weight: 600;
                 color: #131313;
             }
+
             .hamsters-facts--accordions {
                 width: 70%;
                 display: flex;
@@ -97,18 +108,21 @@
             }
         }
     }
+
     .blurred-things {
         position: absolute;
         z-index: -2;
         filter: blur(15px);
+
         @keyframes levitate {
             0%, 100% {
-              transform: translateY(0);
+                transform: translateY(0);
             }
             50% {
-              transform: translateY(-20px);
+                transform: translateY(-20px);
             }
         }
+
         .cylinder--1 {
             position: absolute;
             left: -500px;
@@ -116,6 +130,7 @@
             rotate: -35deg;
             animation: levitate 4s ease-in-out infinite;
         }
+
         .cylinder--2 {
             position: absolute;
             left: 210px;
@@ -123,6 +138,7 @@
             rotate: 25deg;
             animation: levitate 7s ease-in-out infinite;
         }
+
         .triangle--1 {
             position: absolute;
             left: -380px;
@@ -141,4 +157,91 @@
         margin-top: 20px;
         margin-left: 20px;
     }  
+}
+
+@media (max-width: 600px) {
+    .home {
+        .home-blur {
+            width: 90%;
+            height: auto;
+            padding: 20px;
+
+            .home-page--title {
+                font-size: 24px;
+                padding-left: 0;
+                text-align: center;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                gap: 15px;
+                padding-left: 0;
+                align-items: center;
+
+                .login-button, .signUp-button {
+                    width: 100%;
+                    height: 50px;
+                }
+            }
+
+            .meme {
+                width: 90%;
+                height: auto;
+                position: relative;
+                left: auto;
+                top: auto;
+                margin-top: 20px;
+            }
+
+            .cat-first {
+                padding-top: 20px;
+            }
+        }
+
+        .decorative-line {
+            left: 20px;
+            top: 100px;
+            rotate: 15deg;
+        }
+    }
+
+    .hamsters-facts--blur {
+        .hamsters-facts--page {
+            width: 90%;
+            .hamsters-facts--title {
+                font-size: 24px;
+                padding-top: 40px;
+                text-align: center;
+            }
+            .hamsters-facts--accordions {
+                width: 100%;
+                gap: 15px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        }
+    }
+
+    .blurred-things {
+        .cylinder--1 {
+            left: -250px;
+            top: 70px;
+        }
+        .cylinder--2 {
+            left: 105px;
+            top: 225px;
+        }
+        .triangle--1 {
+            left: -190px;
+            top: 265px;
+        }
+    }
+
+    .login-modal {
+        .login-modal--title {
+            font-size: 30px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+    }
 }
