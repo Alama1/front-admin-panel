@@ -5,8 +5,8 @@
     align-items: center;
 
     .home-blur {
-        width: 70%;
-        height: 1000px;
+        width: 70vw;
+        height: auto;
         background-color: rgba(#000000, 0.15);
         text-align: left;
 
@@ -29,6 +29,9 @@
             padding-top: 30px;
 
             .login-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 width: 235px;
                 height: 70px;
                 background-color: #44DAE7;
@@ -38,6 +41,9 @@
             }
 
             .signUp-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 cursor: pointer;
                 width: 120px;
                 height: 70px;
@@ -48,41 +54,92 @@
         }
 
         .meme {
-            width: 500px;
-            height: 445px;
-            position: absolute;
-            left: 1220px;
-            top: 300px;
+            width: 20vw;
+            height: 53.5vh;
+            position: relative;
+            left: 50vw;
             border-radius: 30px;
             background-size: contain;
             background-repeat: no-repeat;
             z-index: 5;
         }
 
-        .cat-first {
-            padding-top: 193px;
+        .dancing-cats {
+            z-index: 5;
+            display: flex;
+            position: relative;
+            .cat-first {
+                width: 100%;
+                margin-bottom: -30px;
+            }
+    
+            .cat-second {
+                margin-bottom: -350px;
+                margin-left: -330px;
+                width: 100%;
+                scale: 75%;
+            }
         }
-
-        .cat-second {
-            scale: 150%;
+        .decorative-line {
+            position: relative;
+            left: -38px;
+            top: -10vh;
+            rotate: 25deg;
+            z-index: -1;
+            width: 71vw;
         }
-    }
-
-    .decorative-line {
-        position: absolute;
-        left: 56px;
-        top: 140px;
-        rotate: 25deg;
-        z-index: -1;
     }
 
     .hamsters-facts--blur {
         display: flex;
+        position: relative;
+        z-index: 1;
         flex-direction: column;
         align-items: center;
         width: 100%;
         background: linear-gradient(216.44deg, rgba(192, 169, 240, 0.1) -11.15%, rgba(192, 169, 240, 0.1) -1.04%);
         min-height: 700px;
+
+        .blurred-things {
+            position: relative;
+            z-index: -2;
+            filter: blur(15px);
+    
+            @keyframes levitate {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-20px);
+                }
+            }
+    
+            .cylinder--1 {
+                position: relative;
+                left: -10vw;
+                top: -400px;
+                rotate: -35deg;
+                max-width: 30vw;
+                animation: levitate 4s ease-in-out infinite;
+            }
+    
+            .cylinder--2 {
+                position: relative;
+                left: 0;
+                top: -30vh;
+                rotate: 25deg;
+                animation: levitate 7s ease-in-out infinite;
+            }
+    
+            .triangle--1 {
+                position: relative;
+                left: 0;
+                top: -25vh;
+                rotate: -87deg;
+                scale: 60%;
+                animation: levitate 5s ease-in-out infinite;
+            }
+        }
 
         .hamsters-facts--page {
             width: 70%;
@@ -90,6 +147,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            z-index: 1;
 
             .hamsters-facts--title {
                 padding-top: 70px;
@@ -106,46 +165,6 @@
                 padding-top: 50px;
                 padding-bottom: 50px;
             }
-        }
-    }
-
-    .blurred-things {
-        position: absolute;
-        z-index: -2;
-        filter: blur(15px);
-
-        @keyframes levitate {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .cylinder--1 {
-            position: absolute;
-            left: -500px;
-            top: 140px;
-            rotate: -35deg;
-            animation: levitate 4s ease-in-out infinite;
-        }
-
-        .cylinder--2 {
-            position: absolute;
-            left: 210px;
-            top: 450px;
-            rotate: 25deg;
-            animation: levitate 7s ease-in-out infinite;
-        }
-
-        .triangle--1 {
-            position: absolute;
-            left: -380px;
-            top: 530px;
-            rotate: -87deg;
-            scale: 60%;
-            animation: levitate 5s ease-in-out infinite;
         }
     }
 }
@@ -176,11 +195,9 @@
                 flex-direction: column;
                 gap: 15px;
                 padding-left: 0;
-                align-items: center;
-
                 .login-button, .signUp-button {
                     width: 100%;
-                    height: 50px;
+                    height: 5vh;
                 }
             }
 
@@ -188,39 +205,48 @@
                 width: 90%;
                 height: auto;
                 position: relative;
-                left: auto;
-                top: auto;
+                left: 30vw;
+                top: 30vh;
                 margin-top: 20px;
             }
 
-            .cat-first {
-                padding-top: 20px;
+            .dancing-cats {
+                .cat-first {
+                    width: 100%;
+                }
+                .cat-second {
+                    width: 100%;
+                }
             }
         }
-
         .decorative-line {
-            left: 20px;
-            top: 100px;
-            rotate: 15deg;
+            position: relative;
+            left: -38px;
+            top: 10vh;
+            rotate: 25deg;
+            z-index: -1;
+            width: 71vw;
         }
+        .hamsters-facts--blur {
+            .hamsters-facts--page {
+                width: 90%;
+                .hamsters-facts--title {
+                    font-size: 24px;
+                    padding-top: 40px;
+                    text-align: center;
+                }
+                .hamsters-facts--accordions {
+                    width: 100%;
+                    gap: 15px;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                }
+            }
+        }
+
     }
 
-    .hamsters-facts--blur {
-        .hamsters-facts--page {
-            width: 90%;
-            .hamsters-facts--title {
-                font-size: 24px;
-                padding-top: 40px;
-                text-align: center;
-            }
-            .hamsters-facts--accordions {
-                width: 100%;
-                gap: 15px;
-                padding-top: 20px;
-                padding-bottom: 20px;
-            }
-        }
-    }
+    
 
     .blurred-things {
         .cylinder--1 {

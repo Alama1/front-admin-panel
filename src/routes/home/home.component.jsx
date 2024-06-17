@@ -209,14 +209,10 @@ const Home = () => {
                         !isLoggedIn ? 
                         <div className='auth-buttons'>
                         <div className='login-button' onClick={openLoginModal}>
-                            <p>
-                                Login
-                            </p>
+                            Login
                         </div>
                         <div className='signUp-button' onClick={openSignUpModal}>
-                            <p>
-                                SignUp
-                            </p>
+                            SignUp
                         </div>
                     </div> :
                     <div className='welcome-back--text'>
@@ -226,10 +222,13 @@ const Home = () => {
 
                     <div className='meme' style={{backgroundImage: `url(${meme})`}}/>
                     <img alt='decorative line' className='decorative-line' src={decorativeLine}/>
-                    <img alt='dancing cat' src={cat1} className='cat-first'/>
-                    <img alt='sleeping cat' src={cat2} className='cat-second'/>
+                    <div className='dancing-cats'>
+                        <img alt='dancing cat' src={cat1} className='cat-first'/>
+                        <img alt='sleeping cat' src={cat2} className='cat-second'/>
+                    </div>
                 </div>
                 <div className='hamsters-facts--blur'>
+                    
                     <div className='hamsters-facts--page'>
                         <div className='hamsters-facts--title'>
                             5 Facts About Hamsters
@@ -242,12 +241,13 @@ const Home = () => {
                             }
                         </div>
                     </div>
+                    <div className='blurred-things'>
+                        <img alt='background cylinder' src={cylinder} className='cylinder--1'/>
+                        <img alt='background cylinder' src={cylinder} className='cylinder--2'/>
+                        <img alt='background triangle' src={triangle} className='triangle--1'/>
+                    </div>
                 </div>
-                <div className='blurred-things'>
-                    <img alt='background cylinder' src={cylinder} className='cylinder--1'/>
-                    <img alt='background cylinder' src={cylinder} className='cylinder--2'/>
-                    <img alt='background triangle' src={triangle} className='triangle--1'/>
-                </div>
+                
             </div>
 
             <Modal
