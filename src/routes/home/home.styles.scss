@@ -134,7 +134,7 @@
             .triangle--1 {
                 position: relative;
                 left: 0;
-                top: -25vh;
+                top: -600px;
                 rotate: -87deg;
                 scale: 60%;
                 animation: levitate 5s ease-in-out infinite;
@@ -212,10 +212,19 @@
 
             .dancing-cats {
                 .cat-first {
+                    position: relative;
+                    top: 40px;
                     width: 100%;
+                    margin-left: 0;
+                    margin-bottom: 0;
+                    bottom: -100px;
                 }
                 .cat-second {
+                    position: relative;
+                    top: 100px;
                     width: 100%;
+                    margin-left: 0;
+                    margin-bottom: 0;
                 }
             }
         }
@@ -241,26 +250,30 @@
                     padding-top: 20px;
                     padding-bottom: 20px;
                 }
+                
+            }
+            .blurred-things {
+                position: relative;
+                bottom: 500px;
+                max-width: 100%;
+                .cylinder--1 {
+                    left: 0px;
+                    top: 0px;
+                    scale: 70%;
+                }
+                .cylinder--2 {
+                    left: 0px;
+                    top: 0px;
+                    scale: 70%;
+                }
+                .triangle--1 {
+                    left: 0px;
+                    top: -150px;
+                    scale: 50%;
+                }
             }
         }
 
-    }
-
-    
-
-    .blurred-things {
-        .cylinder--1 {
-            left: -250px;
-            top: 70px;
-        }
-        .cylinder--2 {
-            left: 105px;
-            top: 225px;
-        }
-        .triangle--1 {
-            left: -190px;
-            top: 265px;
-        }
     }
 
     .login-modal {

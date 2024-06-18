@@ -270,7 +270,7 @@ const Gustavo = () => {
                 <div className='personal-gifs--elements'>
                     {
                         Object.entries(personalGifs).map(([key, value], index) => {
-                            return <div key={`personal gif element ${index}`} className='personal-gips-container'>
+                            return <div key={`personal gif element ${index}`} className='personal-gifs-container'>
                                         <div className='personal-gif-element'>
                                             <div className='personal-gif--username'>
                                                 {key.split('<>')[0]}

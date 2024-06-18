@@ -13,101 +13,104 @@
         }
     }
 }
-.reaction-gifs {
-    display: flex;
-    flex-direction: column;
-    gap: 2em;
-    .reaction-gifs--global {
+.content {
+    padding: 0;
+    .reaction-gifs {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        .global-gif--header {
+        gap: 2em;
+        .reaction-gifs--global {
             display: flex;
             flex-direction: column;
-            padding-bottom: 2vh;
-            .reaction-chance {
+            align-items: center;
+            .global-gif--header {
                 display: flex;
-                justify-content: center;
-                .reaction-chance--chance {
-                    margin-left: 1em;
-                    border-radius: 3px;
-                    width: 3rem;
-                    color: #fff;
-                    text-align: center;
-                    font-weight: 600;
-                    font-size: 16px;
-                }
-            }
-        }
-        .global-gifs--elements{
-            display:grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            row-gap: 2ch;
-            column-gap: 2ch;
-            max-width: 100%;
-            .global-reaction--gif {
-                max-width: 100%;
-                min-height: 0vh;
-                max-height: 50vh;
-                overflow: hidden;
-                cursor: pointer;
-            }
-        }
-        
-    }
-    .reaction-gifs--personal {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .personal-gif--header {
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 2vh;
-            .reaction-chance {
-                display: flex;
-                justify-content: center;
-                .reaction-chance--chance {
-                    margin-left: 1em;
-                    border-radius: 3px;
-                    width: 3rem;
-                    color: #fff;
-                    text-align: center;
-                    font-weight: 600;
-                    font-size: 16px;
-                }
-            }
-        }
-        .personal-gifs--elements {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5vw;
-            .personal-gips-container {
-                .personal-gif-element {
+                flex-direction: column;
+                padding-bottom: 2vh;
+                .reaction-chance {
                     display: flex;
-                    flex-direction: column;
-                    gap: 0.5vw;
-                    .personal-gif--username {
+                    justify-content: center;
+                    .reaction-chance--chance {
+                        margin-left: 1em;
+                        border-radius: 3px;
+                        width: 3rem;
+                        color: #fff;
                         text-align: center;
+                        font-weight: 600;
+                        font-size: 16px;
                     }
-                    .personal-gif--gifs {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr 1fr 1fr;
-                        row-gap: 2ch;
-                        column-gap: 2ch;
-                        max-width: 100%;
-                        .personal-reaction--gif {
-                            max-width: 100%;
-                            min-height: 0vh;
-                            max-height: 50vh;
-                            overflow: hidden;
-                            cursor: pointer;
-                        }
-                    }
+                }
+            }
+            .global-gifs--elements{
+                display:grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                row-gap: 2ch;
+                column-gap: 2ch;
+                max-width: 100%;
+                .global-reaction--gif {
+                    max-width: 100%;
+                    min-height: 0vh;
+                    max-height: 50vh;
+                    overflow: hidden;
+                    cursor: pointer;
                 }
             }
             
         }
-
+        .reaction-gifs--personal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .personal-gif--header {
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 2vh;
+                .reaction-chance {
+                    display: flex;
+                    justify-content: center;
+                    .reaction-chance--chance {
+                        margin-left: 1em;
+                        border-radius: 3px;
+                        width: 3rem;
+                        color: #fff;
+                        text-align: center;
+                        font-weight: 600;
+                        font-size: 16px;
+                    }
+                }
+            }
+            .personal-gifs--elements {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5vw;
+                .personal-gifs-container {
+                    .personal-gif-element {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5vw;
+                        .personal-gif--username {
+                            text-align: center;
+                        }
+                        .personal-gif--gifs {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 1fr;
+                            row-gap: 2ch;
+                            column-gap: 2ch;
+                            max-width: 100%;
+                            .personal-reaction--gif {
+                                max-width: 100%;
+                                min-height: 0vh;
+                                max-height: 50vh;
+                                overflow: hidden;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                
+            }
+    
+        }
     }
 }
 .add-reaction-gif-button {
@@ -125,4 +128,37 @@
     flex-direction: column;
     align-items: center;
     gap: 1vw;
+}
+
+@media (max-width: 600px) {
+    .gustavo {
+        .gustavo--body {
+            width: 90%;
+        }
+    }
+    .content {
+        padding: 0;
+        .reaction-gifs {
+            .reaction-gifs--global {
+               .global-gifs--elements {
+                    grid-template-columns: 1fr 1fr;
+               } 
+            }
+            .reaction-gifs--personal {
+                .personal-gifs--elements {
+                    .personal-gifs-container {
+                        .personal-gif-element {
+                            .personal-gif--gifs {
+                                grid-template-columns: 1fr 1fr;
+                            }
+                            .personal-gif--username {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
